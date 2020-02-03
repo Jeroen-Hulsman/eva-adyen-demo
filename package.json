@@ -19,7 +19,12 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@ng-select/ng-select": "^2.20.5",
+    "@ngx-translate/core": "11.0.0",
+    "@ngx-translate/http-loader": "^4.0.0",
+    "@springtree/eva-sdk-redux": "^1.149.0",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
@@ -31,6 +36,7 @@
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@springtree/eva-sdk-redux": "^1.149.0",
     "codelyzer": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -42,6 +48,14 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.4.3",
+    "@microsoft/signalr": "^3.1.0"
+  },
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/angular@0.2.0"
+    },
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
   }
 }

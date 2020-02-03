@@ -1,0 +1,39 @@
+<!-- <ng-container *ngFor="let bank of bankList" >
+  <div (click)="selectOption(bank)">
+   <img class="bank-logo" [src]="bank.Logo">
+   <span>{{bank.Name}}</span>
+  </div>
+</ng-container> -->
+<div class="ideal-wrapper">
+
+  <!-- <div class="label">
+    <span>{{'adyen-gateway.ideal.banklabel' | translate }}</span>
+  </div> -->
+
+  <div class="ideal-select">
+    <div class="rituals-select">
+      <label for="ID">{{'adyen-gateway.ideal.banklabel' | translate }}</label>
+      <ng-select
+        autofocus
+        labelForId="ID"
+        [items]="bankList"
+        [searchable]="false"
+        [clearable]="false"
+        [placeholder]="'adyen-gateway.choose' | translate"
+        bindLabel="Name"
+        bindValue="ID"
+        (change)="selectOption($event)"
+      >
+      </ng-select>
+    </div>
+    <!-- <mat-form-field class="ideal-field">
+      <mat-label>{{'adyen-gateway.choose' | translate}}</mat-label>
+      <mat-select [(ngModel)]="selectedBank" (selectionChange)="selectOption($event)">
+        <mat-option *ngFor="let bank of bankList" [value]="bank">
+            {{ bank.Name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+  </div>
+
+</div>

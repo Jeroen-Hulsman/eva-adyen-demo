@@ -1,0 +1,26 @@
+<div class="cc-wrapper">
+    <div id="cc-container-{{ccContainerId}}" class="cc-container">
+      <label class="cardNumber">
+          <span class="cc-label">Card number</span>
+          <span class="secureField " data-cse="encryptedCardNumber"></span>
+          <span class="error" *ngIf="getError('encryptedCardNumber')"> {{ getError('encryptedCardNumber') }}</span>
+      </label>
+      <label class="cardDate">
+          <span class="cc-label">Expiry date:</span>
+          <span class="secureField" data-cse="encryptedExpiryDate"></span>
+          <span class="error" *ngIf="getError('encryptedExpiryDate')"> {{ getError('encryptedExpiryDate') }}</span>
+      </label>
+      <label class="cardCVC">
+          <span class="cc-label">CVV/CVC:</span>
+          <span class="secureField" data-cse="encryptedSecurityCode"></span>
+          <span class="error" *ngIf="getError('encryptedSecurityCode')"> {{ getError('encryptedSecurityCode') }}</span>
+      </label>
+    </div>
+
+    <div class="holderName">
+        <label>
+            <span class="normalField cc-label">Holdername:</span>
+            <input class="inputField" (keyup)="holderNameChanged($event)" type="text" />
+        </label>
+    </div>
+</div>

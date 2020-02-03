@@ -1,0 +1,76 @@
+
+.secureField {
+  display: block;
+  height: 50px;
+  width: 100%;
+  border: 1px solid #d8d8d8;
+  margin-top: 15px;
+}
+.holderName {
+  width: 100%;
+  label {
+    width: 100%;
+  }
+
+  .normalField {
+    display: block;
+    padding-bottom: 15px;
+  }
+
+  .inputField {
+    height: 50px;
+    width: 100%;
+    letter-spacing: 0.5px;
+    background: white;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(0, 27, 43);
+  }
+}
+
+.cc-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+
+  label {
+    padding-top: 15px;
+  }
+}
+
+.cc-wrapper {
+
+  display: flex;
+  justify-content: center;
+  border-bottom: 20px solid #f6f4f2;
+  padding: 20px;
+}
+
+.cc-label {
+  font-family: ScalaSansOT;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  color: #1A1919;
+  margin-top: 15px;
+  padding-left: 0px;
+  display: block;
+}
+
+label {
+  &.cardNumber {
+    width: 100%;
+  }
+
+  &.cardDate {
+    width: 45%;
+  }
+
+  &.cardCVC {
+    width: 45%;
+  }
+}
+
+.error {
+  color: red;
+}
