@@ -1,56 +1,87 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { EvaAdyenComponent } from './eva-adyen.component';
-import { EvaAdyenMethodDirective } from './components/eva-adyen-method.directive';
-import { EvaAdyenMethodComponent } from './components/eva-adyen-method/eva-adyen-method.component';
-import { EvaAdyenMethodBaseComponent } from './components/eva-adyen-method-base/eva-adyen-method-base.component';
-import { EvaAdyenMethodIdealComponent } from './components/eva-adyen-method-ideal/eva-adyen-method-ideal.component';
-import {
-  EvaAdyenMethodSelectAndRedirectComponent
-} from './components/eva-adyen-method-select-and-redirect/eva-adyen-method-select-and-redirect.component';
-import { EvaAdyenMethodCreditCardComponent } from './components/eva-adyen-method-credit-card/eva-adyen-method-credit-card.component'
+import { EvaAdyenTestComponent } from './components/eva-adyen-test/eva-adyen-test.component';
+import { EvaRitualsService } from './components/eva-adyen-test/eva-rituals.service';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { EvaAdyenWindowService } from './components/eva-adyen-window.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-import {} from '@springtree/eva-sdk-redux';
-import { ConfiguredTranslateModule } from './components/translate';
+import '@springtree/eva-sdk-redux';
+
+import { EvaStartupProvider, startupProviderFactory } from './components/eva-adyen-test/eva-startup';
+import { AppRoutingModule } from './app-routing.module';
+
+import { EvaRootComponent } from './app.component';
+
+import { EvaAdyenAngularModule } from 'eva-adyen-angular';
+
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 @NgModule({
   entryComponents: [
-    EvaAdyenMethodIdealComponent,
-    EvaAdyenMethodSelectAndRedirectComponent,
-    EvaAdyenMethodCreditCardComponent
+
+    EvaAdyenTestComponent,
+    // EvaAdyenMethodIdealComponent,
+    // EvaAdyenMethodSelectAndRedirectComponent,
+    // EvaAdyenMethodCreditCardComponent,
+    // EvaAdyenMethodPaypalComponent,
+    // EvaAdyenMethodKlarnaComponent,
+    EvaRootComponent
   ],
   declarations: [
-    EvaAdyenComponent,
-    EvaAdyenMethodComponent,
-    EvaAdyenMethodBaseComponent,
-    EvaAdyenMethodIdealComponent,
-    EvaAdyenMethodSelectAndRedirectComponent,
-    EvaAdyenMethodCreditCardComponent,
-    EvaAdyenMethodDirective
+
+    EvaAdyenTestComponent,
+    // EvaAdyenMethodComponent,
+    // EvaAdyenMethodBaseComponent,
+    // EvaAdyenMethodIdealComponent,
+    // EvaAdyenMethodSelectAndRedirectComponent,
+    // EvaAdyenMethodCreditCardComponent,
+    // EvaAdyenMethodDirective,
+    // EvaAdyenMethodPaypalComponent,
+    // EvaAdyenMethodKlarnaComponent,
+    EvaRootComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    ConfiguredTranslateModule
+    HttpClientModule,
+    AppRoutingModule,
+    EvaAdyenAngularModule,
+    TranslateModule.forRoot({ useDefaultLang: true, isolate: true, loader: { provide: TranslateLoader, useFactory: (translateLoaderFactory), deps: [HttpClient] } })
   ],
   exports: [
-    EvaAdyenComponent
+    EvaAdyenTestComponent
   ],
   providers: [
-    EvaAdyenWindowService
+    // EvaAdyenWindowService,
+    EvaRitualsService,
+    EvaStartupProvider,
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: startupProviderFactory,
+      deps: [ Injector, EvaStartupProvider, ]
+    },
   ],
-  bootstrap: [ EvaAdyenComponent ]
+  bootstrap: [
+    EvaRootComponent
+  ]
 })
 
 export class EvaAdyenModule {
   constructor() {
   }
+}
+
+
+export function translateLoaderFactory( http: HttpClient ) {
+  return new TranslateHttpLoader( http, './assets/locales/', '.json' );
 }

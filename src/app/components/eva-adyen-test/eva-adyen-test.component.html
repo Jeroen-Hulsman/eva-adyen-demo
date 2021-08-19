@@ -1,0 +1,110 @@
+<div class="page-wrapper">
+  <h1>Eva Adyen Test Suite</h1>
+
+  <div class="info-wrapper">
+    <div class="order-info" *ngIf="order && order.Lines.length > 0 else emptyCartTemplate">
+      <h2>Items in cart: (# {{order.ID}} <span *ngIf="order.Customer?.EmailAddress"> - {{order.Customer.EmailAddress }} </span>)</h2>
+      {{order.Customer | json}}
+      <div *ngFor="let line of order.Lines">
+        {{line.QuantityOrdered}}x {{line.Description}}
+      </div>
+
+      <h2 *ngIf="giftcard?.IsAvailable">
+        The giftcard has already been paid!
+      </h2>
+
+      <h2 *ngIf="!giftcard?.IsAvailable">
+        The giftcard has not been paid!
+      </h2>
+
+      <button (click)="emptyCart(order.ID)">Clear cart</button>
+
+      <!-- <div class="country-select" *ngIf="cultures">
+        <label for="country">Country / OU</label>
+
+        <ng-select
+          autofocus
+          labelForId="country"
+          [items]="cultures"
+          [searchable]="false"
+          [clearable]="false"
+          [placeholder]="'OU'"
+          bindLabel="country"
+
+          [(ngModel)]="selectedCulture"
+          (change)="selectOu()"
+        >
+        </ng-select>
+      </div>
+
+      <div class="lang-select" *ngIf="selectedCulture">
+        <label for="language">Language</label>
+        <ng-select
+          autofocus
+          labelForId="language"
+          [items]="selectedCulture.languages"
+          [searchable]="false"
+          [clearable]="false"
+          [placeholder]="'Language'"
+          [(ngModel)]="selectedLanguage"
+          (change)="selectLanguage()"
+        >
+        </ng-select>
+      </div> -->
+    </div>
+
+    <div class="method-info">
+      <div *ngIf="availableMethods && availableMethods.PaymentMethods">
+        <h3>Available Methods: </h3>
+        <div *ngFor="let method of availableMethods.PaymentMethods">
+          {{method}}
+        </div>
+      </div>
+
+      <div *ngIf="adyenGateways && adyenGateways.evaGateways">
+        <h3>Available Adyen gatways</h3>
+        <div *ngFor="let gateway of adyenGateways.evaGateways">
+          {{gateway.Name}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ selectedLanguage | json }}
+
+  <div class="adyen-wrapper">
+    <eva-adyen
+    *ngIf="adyenGateways && order"
+    [availableGateways]="adyenGateways"
+    [adyenOriginKey]="originKey"
+    [amount]="order.TotalAmountInTax"
+    [currencySymbol]="order.CurrencyID"
+    [order]="order"
+    [language]="selectedLanguage"
+    [country]="selectedCulture.country"
+    (createPaymentPayloadEvent)="createPayment($event)"
+    (paymentAuthorized)="paymentAuthorized($event)"
+    (paymentFailed)="paymentFailed($event)"
+    [createPaymentResponse]="createPaymentResponse"
+    >
+    </eva-adyen>
+  </div>
+
+  <div class="payment-authorized" *ngIf="paymentAuthorizedEvent">
+    {{paymentAuthorizedEvent | json}}
+  </div>
+
+  <div class="payment-authorized" *ngIf="paymentFailedEvent">
+    {{paymentFailedEvent | json}}
+  </div>
+</div>
+
+
+<ng-template #emptyCartTemplate>
+  <h2>
+    Your cart is empty.
+  </h2>
+  <button class="add-button" (click)="prepareNewCart(true)" >Add giftcard (anon customer)</button>
+  <button class="add-button" (click)="prepareNewCart()" >Add giftcard (normal customer)</button>
+</ng-template>
+

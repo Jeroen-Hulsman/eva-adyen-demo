@@ -1,0 +1,57 @@
+.page-wrapper {
+  background-color: #f6f4f2;
+}
+
+.info-wrapper {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.adyen-wrapper {
+
+  min-width: 335px;
+  max-width: 460px;
+
+  margin: 0 auto;
+
+}
+
+.order-info {
+  width: 50%;
+  padding: 20px;
+}
+
+.method-info {
+  width: 50%;
+  padding: 20px;
+}
+
+.add-button {
+  margin-left: 50px;
+}
+
+.country-select {
+  margin-top: 15px;
+}
+
+.payment-authorized {
+  min-width: 335px;
+  max-width: 460px;
+
+  margin: 0 auto;
+
+  color: green;
+  font-weight: 700;
+}
+
+.payment-failed {
+  min-width: 335px;
+  max-width: 460px;
+
+  margin: 0 auto;
+
+  color: red;
+  font-weight: 700;
+}

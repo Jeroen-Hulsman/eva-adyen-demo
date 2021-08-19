@@ -1,0 +1,29 @@
+{
+  "adyen-gateway": {
+    "choose": "Kies een bank",
+    "ideal": "iDeal",
+    "ideal.banklabel": "Bank *",
+    "paypal": "PayPal",
+    "klarna": "Betaal later met Klarna",
+    "rituals": "Rituals Giftcard",
+    "applepay": "Apple Pay",
+    "cup": "Union Pay",
+    "mc": "MasterCard",
+    "visa": "Visa",
+    "amex": "American Express",
+    "pay": "Betaal {{currencyId}} {{amount}}",
+    "bcmc": "Bancontact",
+    "swish": "Swish",
+    "card": {
+      "number": "Cardnumber",
+      "holdername": "Holdername",
+      "expirydate": "Expiry Date",
+      "cvc": "CVC"
+    },
+    "bancontact": {
+      "button.qr" : "Open qr code",
+      "button.card": "Use card",
+      "separator": "or"
+    }
+  }
+}
